@@ -8,5 +8,6 @@ import { GuardsModule } from '@/providers/guards/guards.module';
 @Module({
   imports: [CryptoModule, GuardsModule],
   providers: [TodoResolver, TodoService, PrismaService],
+  exports: [TodoService]
 })
 export class TodoModule {}

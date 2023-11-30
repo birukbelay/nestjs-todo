@@ -17,12 +17,20 @@ import { logTrace } from '@/common/logger';
 export class TodoResolver {
   constructor(private readonly todosService: TodoService) {}
 
-  
+  @UseGuards(GqlJwtGuard)
   @Mutation(() => Todo, { name: 'CreateTodo' })
-  createOne(@Args('createTodoInput') createTodoInput: CreateTodoInput) {
+  createOne(@Context() ctx, @Args('createTodoInput') createTodoInput: CreateTodoInput) {
+    /**
+     * this will make only authenticated users to create todos
+     */
+    const request = ctx.req;
+    const user = request['user']
+    
+    createTodoInput.userId = user.id;
     return this.todosService.create(createTodoInput);
   }
 
+  
 
 
   @Query(() => [Todo], { name: 'findTodos' })
@@ -65,7 +73,6 @@ export class TodoResolver {
     @Args('limit', { nullable: true }) limit: number,
     @Args('orderBy', { nullable: true }) orderBy: TodoOrder,
     @Args('userId') id: number,
-    @Context() ctx,
   ) {    
     if(limit<0) limit =20
     if (limit>30) limit=30

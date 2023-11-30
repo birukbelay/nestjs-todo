@@ -4,9 +4,6 @@ import { Todo } from './entities/todo.entity';
 import { PrismaService } from '@/prisma.service';
 import { Todo as PTodo, Prisma } from '@prisma/client';
 
-import { CryptoService } from '@/providers/crypto/crypto.service';
-import { CustomJwtService } from '@/providers/crypto/jwt.service';
-
 @Injectable()
 export class TodoService {
   constructor(private prisma: PrismaService) {}

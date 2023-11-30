@@ -40,6 +40,8 @@ registerEnumType(SortOrder, {
 
 @InputType()
 export class UpdateTodoInput extends PartialType(CreateTodoInput) {}
+@InputType()
+
 
 @InputType()
 export class LoginTodoInput {

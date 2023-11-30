@@ -9,6 +9,7 @@ import { GuardsModule } from '@/providers/guards/guards.module';
   imports:[
      CryptoModule,
     GuardsModule,],
-  providers: [UsersResolver, UsersService, PrismaService]
+  providers: [UsersResolver, UsersService, PrismaService],
+  exports:[UsersService]
 })
 export class UsersModule {}

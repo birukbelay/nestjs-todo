@@ -9,6 +9,7 @@ import { UsersModule } from './app/users/users.module';
 import { APP_FILTER } from '@nestjs/core';
 import { GraphQLExceptionFilter } from './common/exception.fiter';
 import { TodoModule } from './app/todos/todo.module';
+import { SocketIOModule } from './app/socket/socket.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { TodoModule } from './app/todos/todo.module';
     }),
     UsersModule,
     TodoModule,
+    SocketIOModule
   ],
   controllers: [AppController],
   providers: [
