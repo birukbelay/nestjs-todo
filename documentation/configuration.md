@@ -1,5 +1,12 @@
 ## configrations
+## Clonning and installing this codebase
 
+1. Install npm dependencies:
+
+cd current_projects_folder
+npm install
+
+2. Create and seed the database
 Run the following command to setup your database. This also creates the User and Todo tables that are defined in prisma/schema.prisma:
 
 > npx prisma migrate dev --name init
@@ -34,7 +41,16 @@ your_username
 your_password
 your_database_name
 ---
-DATABASE_URL="postgresql://your_username:your_password@localhost:5432/your_database_name?schema=Public"
-SHADOW_DATABASE_URL="postgresql://your_username:your_password@localhost:5432/shadow_database_name?schema=Public"
+- the url to the main database
+> DATABASE_URL="postgresql://your_username:your_password@localhost:5432/your_database_name?schema=Public"
+- the url to the shadow database
+> SHADOW_DATABASE_URL="postgresql://your_username:your_password@localhost:5432/shadow_database_name?schema=Public"
 <!-- the actual node env, dev, or production or test -->
-NODE_ENV=dev
+- the current env
+> NODE_ENV=dev
+
+
+
+3. running the app
+
+> pnpm start:dev or npm run start:dev
