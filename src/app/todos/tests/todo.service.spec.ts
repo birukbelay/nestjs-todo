@@ -3,17 +3,17 @@ import { TodoService } from '../todo.service';
 import { PrismaService } from '@/prisma.service';
 import { SortOrder, TodoOrder } from '../dto/todo.input';
 
-const prismaServiceMock = {
-  todo: {
-    findUnique: jest.fn(),
-    create: jest.fn(),
-    findMany: jest.fn(),
-    update: jest.fn(),
-    delete: jest.fn(),
-  },
-};
 
 describe('TodosService', () => {
+  const prismaServiceMock = {
+    todo: {
+      findUnique: jest.fn(),
+      create: jest.fn(),
+      findMany: jest.fn(),
+      update: jest.fn(),
+      delete: jest.fn(),
+    },
+  };
   let todoService: TodoService;
 
   let prismaService: PrismaService;
@@ -185,12 +185,12 @@ const newTodo2 ={
 
       const paginatedTodos = await todoService.paginate('', 10, 0, { createdAt: SortOrder.asc}, 123);
 
-      // expect(mockFindMany).toHaveBeenCalledWith({
-      //   where: { OR: [{ title: { contains: '' } }], userId: 123 },
-      //   take: 10,
-      //   skip: 0,
-      //   orderBy: { createdAt: 'asc' },
-      // });
+      expect(mockFindMany).toHaveBeenCalledWith({
+        where: { OR: [{ title: { contains: '' } }], userId: 123 },
+        take: 10,
+        skip: 0,
+        orderBy: { createdAt: 'asc' },
+      });
       expect(paginatedTodos).toEqual([
        newTodo1,
         newTodo2,
