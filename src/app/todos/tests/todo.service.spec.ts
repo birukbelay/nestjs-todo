@@ -183,10 +183,10 @@ const newTodo2 ={
           newTodo2
         ]);
 
-      const paginatedTodos = await todoService.paginate('', 10, 0, { createdAt: SortOrder.asc}, 123);
+      const paginatedTodos = await todoService.paginate('h', 10, 0, { createdAt: SortOrder.asc}, 123);
 
       expect(mockFindMany).toHaveBeenCalledWith({
-        where: { OR: [{ title: { contains: '' } }], userId: 123 },
+        where: { OR: [{ title: { contains: 'h' } }, { content: { contains: 'h' } }], userId: 123 },
         take: 10,
         skip: 0,
         orderBy: { createdAt: 'asc' },

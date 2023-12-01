@@ -51,7 +51,7 @@ export class TodoService {
 
   async paginate(
     searchString: string,
-    take,
+    take: number,
     skip: number,
     orderBy: TodoOrder,
     userId: number,
@@ -71,7 +71,7 @@ export class TodoService {
         ...or,
       },
       take: take || undefined,
-      skip: skip || undefined,
+      skip: skip,
       orderBy: orderBy || undefined,
     });
   }
