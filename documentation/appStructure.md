@@ -50,6 +50,7 @@ this app have the following folders
 
 - i have written tests for the todo module for its services for different scenarios such as creating, pagination,
 - you can find the tests at app/todo/tests/todo.service.spec
+- and app/todo/todo.resolver.spec
 
 ## Ci/CD
 

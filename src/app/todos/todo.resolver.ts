@@ -8,7 +8,7 @@ import {
   TodoOrder,
   UpdateTodoInput,
 } from './dto/todo.input';
-import { UseGuards } from '@nestjs/common';
+import { HttpException, HttpStatus, UseGuards } from '@nestjs/common';
 import { GqlJwtGuard } from '@/providers/guards/guard.gql';
 import { AllowedRoles } from '@/providers/guards/roles.decorators';
 import { RoleType } from '@/common/types.model';
@@ -25,7 +25,7 @@ export class TodoResolver {
      */
     const request = ctx.req;
     const user = request['user']
-    
+    if(!user)throw new HttpException('Unauthorized access. User not authenticated.', HttpStatus.FORBIDDEN);
     createTodoInput.userId = user.id;
     return this.todosService.create(createTodoInput);
   }
