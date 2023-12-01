@@ -1,9 +1,12 @@
-name: CI/CD Pipeline
+name: ci-cd CI
 
 on:
   push:
     branches:
-      - main  # Replace with your main branch name
+      - main  # this is the main branch
+  pull_request:
+    branches: 
+      - main
 
 jobs:
   build:
@@ -16,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'  # Replace with your Node.js version
+          node-version: '18'  # Replace with your Node.js version
 
       - name: Install dependencies
         run: npm install
@@ -26,5 +29,10 @@ jobs:
 
       - name: Build app
         run: npm run build  # Modify this based on your build command
+      - name: Using pm2 start or restart our server  # this is for example if we are using pm2 
+        run pm2 stop 0   # in order to run this we need to configure it on he server, for our case am asuming i have configured it on digital ocean
+        run pm2 start 0  # this is the id of our process
+        run pm2 save
+        run sudo service nginx restart # make sure you have configured to run commands with out password on your server
 
       # Add deployment steps here (e.g., deploying to a server, cloud platform, etc.)

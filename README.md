@@ -7,9 +7,9 @@ npm install
 
 2. Create and seed the database
 
-Run the following command to create your SQLite database file. This also creates the User and Post tables that are defined in prisma/schema.prisma:
+Run the following command to migrate the schemas for the first time. This also creates the User and Todos tables that are defined in prisma/schema.prisma:
 
-npx prisma migrate dev --name init
+> npx prisma migrate dev --name init
 
 
 ### Create database and connect

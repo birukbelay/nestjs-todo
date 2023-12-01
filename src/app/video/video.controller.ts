@@ -1,3 +1,4 @@
+import { logTrace } from '@/common/logger';
 import { Controller, Get, Param, Res, StreamableFile } from '@nestjs/common';
 import { Response } from 'express';
 import * as fs from 'fs';
@@ -8,14 +9,20 @@ export class VideoController {
 
 
   @Get('stream/:filename')
-  getFile(@Param('filename') filename: string): StreamableFile {
-    const file = fs.createReadStream(path.join(process.cwd(), 'videos', filename));
+  getFile(@Param('filename') filename: string, @Res() res: Response): StreamableFile {
+    
+    const videoPath = path.join(process.cwd(), 'assets', filename);
+    if (!fs.existsSync(videoPath)) {
+      res.status(404).send('Video not found');
+      return;
+    }
+    const file = fs.createReadStream(videoPath);
     return new StreamableFile(file);
   }
   @Get(':filename')
   async streamVideo(@Param('filename') filename: string, @Res() res: Response): Promise<void> {
-    const videoPath = path.join(__dirname, 'videos', filename);
-
+    const videoPath = path.join(process.cwd(), 'assets', filename);
+    // logTrace("video path workdir", __dirname)
     if (!fs.existsSync(videoPath)) {
       res.status(404).send('Video not found');
       return;
@@ -29,7 +36,6 @@ export class VideoController {
       'Content-Length': fileSize,
       'Content-Type': 'video/mp4',
     };
-
     res.writeHead(200, head);
 
     const videoStream = fs.createReadStream(videoPath);

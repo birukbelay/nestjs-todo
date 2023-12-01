@@ -10,6 +10,7 @@ import { APP_FILTER } from '@nestjs/core';
 import { GraphQLExceptionFilter } from './common/exception.fiter';
 import { TodoModule } from './app/todos/todo.module';
 import { SocketIOModule } from './app/socket/socket.module';
+import { VideoModule } from './app/video/video.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { SocketIOModule } from './app/socket/socket.module';
     }),
     UsersModule,
     TodoModule,
-    SocketIOModule
+    SocketIOModule,
+    VideoModule
   ],
   controllers: [AppController],
   providers: [
