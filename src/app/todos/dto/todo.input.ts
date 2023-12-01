@@ -29,7 +29,7 @@ export class TodoOrder {
   createdAt: SortOrder;
 }
 
-enum SortOrder {
+export enum SortOrder {
   asc = 'asc',
   desc = 'desc',
 }

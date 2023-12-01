@@ -46,12 +46,10 @@ this app have the following folders
 
 - the video package can stream videos on the /videos/:filename or /videos/stream/:filename , by getting the filename of the video it can stream if the video name exist in the assets directory
 
-
-
 ## Testing
 
 - i have written tests for the todo module for its services for different scenarios such as creating, pagination,
-
+- you can find the tests at app/todo/tests/todo.service.spec
 
 ## Ci/CD
 
